@@ -16,6 +16,8 @@ All commands are standalone; there is **no menu system**.
 
 ## Installation
 
+### Option 1: Manual
+
 1. Place `matchbox.py` in a folder of your choice (e.g., `~/tools`).  
 2. Make it executable:
 
@@ -35,6 +37,32 @@ source ~/.zshrc
 \```bash
 matchbox cwd
 \```
+
+---
+
+### Option 2: Zsh Installer (`matchboxer.zsh`)
+
+The `matchboxer.zsh` script provides a simple Zsh-specific installer for Matchbox v2. It can **install, uninstall, or update** Matchbox easily.  
+
+#### Usage
+
+\```bash
+./matchboxer.zsh install    # Install Matchbox
+./matchboxer.zsh uninstall  # Uninstall Matchbox
+./matchboxer.zsh update     # Update Matchbox to latest local version
+\```
+
+#### Features
+
+- Checks for Python 3 before installing.
+- Creates `~/tools` directory if missing.
+- Copies `matchbox.py` to `~/tools/matchbox`.
+- Makes it executable.
+- Adds the install directory to PATH in `.zshrc` if not already present.
+- Provides clear emoji feedback during install/uninstall/update.
+- Safe uninstall removes executable and PATH entry from `.zshrc`.
+
+> After installation, restart your terminal or run `source ~/.zshrc` to apply PATH changes.  
 
 ---
 
@@ -110,4 +138,7 @@ matchbox <command> [arguments]
 - All commands are **single-line, standalone**, and work without menus.  
 - Weather uses **wttr.in**; requires internet connection.  
 - System info is formatted for readability: OS, hostname, kernel, architecture.  
- - Works best in **Zsh** or any modern macOS terminal.
+- Works best in **Zsh** or any modern macOS terminal.  
+- Zsh installer simplifies setup and PATH management.  
+
+---

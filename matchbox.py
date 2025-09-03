@@ -3,7 +3,6 @@ import os
 import subprocess
 import argparse
 import webbrowser
-import sys
 import urllib.parse
 
 # -------------------
@@ -22,7 +21,16 @@ def list_files(args):
         print("📂 Directory is empty")
 
 def system_info(args):
-    subprocess.run(["uname", "-a"])
+    # Clean, readable system info
+    os_name = subprocess.getoutput("uname -s")
+    hostname = subprocess.getoutput("hostname")
+    kernel = subprocess.getoutput("uname -r")
+    arch = subprocess.getoutput("uname -m")
+    
+    print(f"🖥️  OS: {os_name}")
+    print(f"🏷️  Hostname: {hostname}")
+    print(f"🔧 Kernel: {kernel}")
+    print(f"💻 Architecture: {arch}")
 
 def ping_host(args):
     subprocess.run(["ping", "-c", "4", args.host])

@@ -56,10 +56,9 @@ def weather(args):
         city_name = args.city
     city_name = city_name[:50]
     city_encoded = urllib.parse.quote(city_name)
-    url = f"https://wttr.in/{city_encoded}?0m"  # the 'm' forces terminal colors
+    url = f"https://wttr.in/{city_encoded}?0"  # the 'm' forces terminal colors
     result = subprocess.run(["curl", "-s", url], capture_output=True, text=True)
-    safe_text = re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', result.stdout)
-    print(safe_text)
+    print(result.stdout)
 
 
 def show_ip(args):

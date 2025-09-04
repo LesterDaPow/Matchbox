@@ -4,6 +4,7 @@ import subprocess
 import argparse
 import webbrowser
 import urllib.parse
+import re
 
 # -------------------
 # Tool functions
@@ -43,10 +44,17 @@ def calc(args):
         print(f"❌ Error: {e}")
 
 def weather(args):
-    city_encoded = urllib.parse.quote(" ".join(args.city))
-    # Short forecast by default
+    if isinstance(args.city, list):
+        city_name = " ".join(args.city)
+    else:
+        city_name = args.city
+    city_name = city_name[:50]
+    city_encoded = urllib.parse.quote(city_name)
     url = f"https://wttr.in/{city_encoded}?0"
-    subprocess.run(["curl", "-s", url])
+    result = subprocess.run(["curl", "-s", url], capture_output=True, text=True)
+    print(re.sub(r'\x1B\[[0-?]*[ -/]*[@-~]', '', result.stdout))
+
+
 
 def show_ip(args):
     print("🌐 Local IP:")
